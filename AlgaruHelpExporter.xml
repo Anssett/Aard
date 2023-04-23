@@ -248,6 +248,7 @@ Usage::
             help_file = assert(io.open(pathed_file, "w"))
             ColourNote("white", "", "Opened " .. pathed_file .. " for write.")
 
+            help_file:write("[@") -- probably could use logic elsewhere to make this not always-on. *points elsewhere -anssett
             for _, line in ipairs(help_array) do
                 if (string.match(line, '{helpbody}') or string.match(line, '{/helpbody}')) then goto continue end
                 line = string.gsub(line, '{helpkeywords}', '')
@@ -255,6 +256,7 @@ Usage::
                 help_file:write(line .. "\r")
                 ::continue::
             end
+            help_file:write("@]") -- probably could use logic elsewhere to make this not always-on. *points elsewhere -anssett
             help_file:close()
         end)
     end
